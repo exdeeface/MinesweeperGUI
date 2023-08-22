@@ -1,0 +1,4 @@
+--patch-module
+com.example.minesweepergui=_
+--add-reads
+com.example.minesweepergui=ALL-UNNAMED

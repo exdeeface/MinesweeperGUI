@@ -126,16 +126,6 @@ public class Grid {
                 }
             }
 
-            /*
-            if (tile.isRevealed()) {
-                    System.out.print(tile.getNeighbouringBombs() + "  ");
-                } else {
-                    char x = tile.hasFlag() ? 'F' : 'W';
-                    System.out.print(x + "  ");
-                }
-            }
-             */
-
             System.out.println();
         }
     }

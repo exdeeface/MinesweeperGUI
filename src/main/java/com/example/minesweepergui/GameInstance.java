@@ -19,7 +19,7 @@ public class GameInstance {
         gameStarted = true;
 
         while (gameStarted) {
-            grid.printGridAsIs();
+            grid.printGrid();
             playerTurn();
 
             if (grid.checkGridState()) {
