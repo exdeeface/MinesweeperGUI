@@ -45,7 +45,7 @@ public class Grid {
             }
 
             default -> {
-                System.out.println("How did you even get here?");
+                System.out.println("This shouldn't happen.");
                 System.exit(0);
             }
         }
