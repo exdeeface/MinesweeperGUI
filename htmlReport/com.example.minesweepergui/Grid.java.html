@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Grid.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">com.example.minesweepergui</a> &gt; <span class="el_source">Grid.java</span></div><h1>Grid.java</h1><pre class="source lang-java linenums">package com.example.minesweepergui;
+import java.util.Vector;
+
+public class Grid {
+<span class="nc" id="L5">    boolean gridCreated = false;</span>
+
+    int difficulty;
+    int size;
+    int bombs;
+
+<span class="nc" id="L11">    Vector&lt;Tile&gt; bombLocations = new Vector&lt;&gt;();</span>
+<span class="nc" id="L12">    Vector&lt;Vector&lt;Tile&gt;&gt; matrix = new Vector&lt;&gt;();</span>
+
+<span class="nc" id="L14">    Grid(int difficulty) {</span>
+<span class="nc" id="L15">        this.difficulty = difficulty;</span>
+<span class="nc" id="L16">        this.initGame();</span>
+<span class="nc" id="L17">    }</span>
+
+    void initGame() {
+<span class="nc" id="L20">        this.createGrid();</span>
+<span class="nc" id="L21">        this.plantBombs();</span>
+<span class="nc" id="L22">        this.setDisplayNumbers();</span>
+<span class="nc" id="L23">    }</span>
+
+    void createGrid() {
+<span class="nc bnc" id="L26" title="All 5 branches missed.">        switch (this.difficulty) {</span>
+            case 0 -&gt; {
+<span class="nc" id="L28">                this.size = 4;</span>
+<span class="nc" id="L29">                this.bombs = 1;</span>
+<span class="nc" id="L30">            }</span>
+
+            case 1 -&gt; {
+<span class="nc" id="L33">                this.size = 8;</span>
+<span class="nc" id="L34">                this.bombs = 10;</span>
+<span class="nc" id="L35">            }</span>
+
+            case 2 -&gt; {
+<span class="nc" id="L38">                this.size = 12;</span>
+<span class="nc" id="L39">                this.bombs = 15;</span>
+<span class="nc" id="L40">            }</span>
+
+            case 3 -&gt; {
+<span class="nc" id="L43">                this.size = 16;</span>
+<span class="nc" id="L44">                this.bombs = 20;</span>
+<span class="nc" id="L45">            }</span>
+
+            default -&gt; {
+<span class="nc" id="L48">                System.out.println(&quot;This shouldn't happen.&quot;);</span>
+<span class="nc" id="L49">                System.exit(0);</span>
+            }
+        }
+
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        for (int i = 0; i &lt; size; i++) {</span>
+<span class="nc" id="L54">            matrix.add(new Vector&lt;&gt;());</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            for (int j = 0; j &lt; size; j++) {</span>
+<span class="nc" id="L56">                matrix.get(i).add(new Tile(this, i, j));</span>
+            }
+        }
+
+<span class="nc" id="L60">        gridCreated = true;</span>
+<span class="nc" id="L61">    }</span>
+
+    void setDisplayNumbers() {
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        for (int i = 0; i &lt; size; i++) {</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            for (int j = 0; j &lt; size; j++) {</span>
+<span class="nc" id="L66">                matrix.get(i).get(j).checkNeighbours();</span>
+            }
+        }
+<span class="nc" id="L69">    }</span>
+
+    boolean checkGridState() {
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        for (Tile tile : bombLocations) {</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if (!tile.hasFlag()) {</span>
+<span class="nc" id="L74">                System.out.println(&quot;Still bombs out there!&quot;);</span>
+<span class="nc" id="L75">                return false;</span>
+            } else {
+<span class="nc" id="L77">                System.out.println(&quot;All bombs found!&quot;);</span>
+<span class="nc" id="L78">                return true;</span>
+            }
+        }
+
+<span class="nc" id="L82">        return true;</span>
+    }
+
+    Tile getTileFromCoordinate(int x, int y) {
+<span class="nc" id="L86">        return matrix.get(x).get(y);</span>
+    }
+
+    void printGrid() {
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        if (!gridCreated) {</span>
+<span class="nc" id="L91">            System.out.println(&quot;Need to create grid before printing.&quot;);</span>
+<span class="nc" id="L92">            return;</span>
+        }
+
+<span class="nc" id="L95">        int sideNumbersY = 1;</span>
+
+<span class="nc" id="L97">        System.out.print(&quot;\n    &quot;);</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">        for (int i = 0; i &lt; this.size; i++) {</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            if (sideNumbersY &lt; 10) {</span>
+<span class="nc" id="L100">                System.out.print(&quot; &quot;);</span>
+            }
+<span class="nc" id="L102">            System.out.print(sideNumbersY + &quot; &quot;);</span>
+<span class="nc" id="L103">            sideNumbersY++;</span>
+        }
+
+<span class="nc" id="L106">        System.out.print(&quot;\n    &quot;);</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        for (int i = 0; i &lt; this.size; i++) { System.out.print(&quot;__ &quot;); }</span>
+<span class="nc" id="L108">        System.out.println();</span>
+
+<span class="nc" id="L110">        int sideNumbersX = 1;</span>
+
+<span class="nc bnc" id="L112" title="All 2 branches missed.">        for (Vector&lt;Tile&gt; col : matrix) {</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            if (sideNumbersX &lt; 10) { System.out.print(&quot; &quot;); }</span>
+<span class="nc" id="L114">            System.out.print(sideNumbersX + &quot; | &quot;);</span>
+<span class="nc" id="L115">            sideNumbersX++;</span>
+
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            for (Tile tile : col) {</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">                if (tile.isRevealed()) {</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">                    if (tile.hasFlag()) {</span>
+<span class="nc" id="L120">                        System.out.print(&quot;F  &quot;);</span>
+                    } else {
+<span class="nc" id="L122">                        System.out.print(tile.getNeighbouringBombs() + &quot;  &quot;);</span>
+                    }
+                } else {
+<span class="nc" id="L125">                    System.out.print(&quot;W  &quot;);</span>
+                }
+<span class="nc" id="L127">            }</span>
+
+<span class="nc" id="L129">            System.out.println();</span>
+<span class="nc" id="L130">        }</span>
+<span class="nc" id="L131">    }</span>
+
+    void printGridAsIs() {
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        if (!gridCreated) {</span>
+<span class="nc" id="L135">            System.out.println(&quot;Need to create grid before printing.&quot;);</span>
+<span class="nc" id="L136">            return;</span>
+        }
+
+<span class="nc" id="L139">        int sideNumbersY = 1;</span>
+
+<span class="nc" id="L141">        System.out.print(&quot;\n    &quot;);</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">        for (int i = 0; i &lt; this.size; i++) {</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">            if (sideNumbersY &lt; 10) { System.out.print(&quot; &quot;); }</span>
+<span class="nc" id="L144">            System.out.print(sideNumbersY + &quot; &quot;);</span>
+<span class="nc" id="L145">            sideNumbersY++;</span>
+        }
+
+<span class="nc" id="L148">        System.out.print(&quot;\n    &quot;);</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">        for (int i = 0; i &lt; this.size; i++) { System.out.print(&quot;__ &quot;); }</span>
+<span class="nc" id="L150">        System.out.println();</span>
+
+<span class="nc" id="L152">        int sideNumbersX = 1;</span>
+
+<span class="nc bnc" id="L154" title="All 2 branches missed.">        for (Vector&lt;Tile&gt; col : matrix) {</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            if (sideNumbersX &lt; 10) { System.out.print(&quot; &quot;); }</span>
+<span class="nc" id="L156">            System.out.print(sideNumbersX + &quot; | &quot;);</span>
+<span class="nc" id="L157">            sideNumbersX++;</span>
+
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            for (Tile tile : col) {</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">                if (tile.hasBomb()) { System.out.print(&quot;B  &quot;); }</span>
+<span class="nc" id="L161">                else { System.out.print(tile.getNeighbouringBombs() + &quot;  &quot;); }</span>
+<span class="nc" id="L162">            }</span>
+<span class="nc" id="L163">            System.out.println();</span>
+<span class="nc" id="L164">        }</span>
+<span class="nc" id="L165">    }</span>
+
+    void plantBombs() {
+<span class="nc bnc" id="L168" title="All 2 branches missed.">        for (int i = 0; i &lt; bombs; i++) {</span>
+<span class="nc" id="L169">            boolean isValid = false;</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">            while (!isValid) {</span>
+<span class="nc" id="L171">                isValid = true;</span>
+<span class="nc" id="L172">                Coordinate c = Coordinate.getRandomCoordinate(this.size);</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">                if (matrix.get(c.x).get(c.y).hasBomb()) {</span>
+<span class="nc" id="L174">                    isValid = false;</span>
+                } else {
+<span class="nc" id="L176">                    bombLocations.add(matrix.get(c.x).get(c.y));</span>
+<span class="nc" id="L177">                    matrix.get(c.x).get(c.y).plantBomb();</span>
+                }
+<span class="nc" id="L179">            }</span>
+        }
+<span class="nc" id="L181">    }</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
