@@ -1,21 +1,14 @@
 package com.example.minesweepergui;
-
-import java.util.Random;
-
-
+import java.security.SecureRandom;
 
 public class Coordinate {
-    int x;
-    int y;
-
-    static Random rand = new Random();
+    static SecureRandom rand = new SecureRandom();
+    int x, y;
 
     Coordinate(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    static Coordinate getRandomCoordinate(int size) {
-        return new Coordinate(rand.nextInt(size), rand.nextInt(size));
-    }
+    static Coordinate getRandomCoordinate(int size) { return new Coordinate(rand.nextInt(size), rand.nextInt(size)); }
 }
