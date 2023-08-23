@@ -69,6 +69,7 @@ public class Grid {
         for (Tile tile : bombLocations) {
             if (!tile.hasFlag()) {
                 return false;
+                //comment
             }
         }
         return true;
