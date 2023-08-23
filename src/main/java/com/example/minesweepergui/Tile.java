@@ -65,10 +65,8 @@ public class Tile {
         for (int i = this.here.x - 1; i <= this.here.x + 1; i++) {
             for (int j = this.here.y - 1; j <= this.here.y + 1; j++) {
                 if (i != this.here.x || j != this.here.y) {
-                    if ((i >= 0 && i <= parent.size - 1) && (j >= 0 && j <= parent.size - 1)) {
-                        if (parent.getTileFromCoordinate(i, j).hasBomb) {
-                            this.neighbouringBombs++;
-                        }
+                    if ((i >= 0 && i <= parent.size - 1) && (j >= 0 && j <= parent.size - 1) && (parent.getTileFromCoordinate(i, j).hasBomb)) {
+                        this.neighbouringBombs++;
                     }
                 }
             }

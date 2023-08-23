@@ -6,7 +6,7 @@ public class Main {
         //add way to start new game without closing exe
         //check for bombs without flagging each one
         //add more robust input
-        GameInstance g = new GameInstance(0);
+        GameInstance g = new GameInstance(1);
         g.start();
     }
 }

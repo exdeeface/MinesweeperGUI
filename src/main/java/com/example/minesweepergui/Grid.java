@@ -1,6 +1,5 @@
 package com.example.minesweepergui;
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class Grid {
     boolean gridCreated = false;
@@ -47,10 +46,7 @@ public class Grid {
                 this.bombs = 20;
             }
 
-            default -> {
-                System.out.println("This shouldn't happen.");
-                System.exit(0);
-            }
+            default -> System.exit(0);
         }
 
         for (int i = 0; i < size; i++) {
@@ -125,7 +121,7 @@ public class Grid {
                         System.out.print(tile.getNeighbouringBombs() + "  ");
                     }
                 } else {
-                    System.out.print("W  ");
+                    System.out.print("?  ");
                 }
             }
 
