@@ -11,11 +11,12 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>5.9.2</junit.version>
+        <junit.version>5.7.0</junit.version>
         <sonar.organization>exdeeface</sonar.organization>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
-
 
     <dependencies>
         <dependency>
@@ -30,14 +31,13 @@
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
+            <artifactId>junit-jupiter</artifactId>
             <version>5.10.0</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.8</version>
+            <version>0.8.10</version>
         </dependency>
     </dependencies>
 
