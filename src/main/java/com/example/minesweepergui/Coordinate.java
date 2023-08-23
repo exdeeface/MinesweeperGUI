@@ -12,5 +12,7 @@ public class Coordinate {
         this.y = y;
     }
 
-    static Coordinate getRandomCoordinate(int size) { return new Coordinate(rand.nextInt(size), rand.nextInt(size)); }
+    static Coordinate getRandomCoordinate(int size) {
+        return new Coordinate(rand.nextInt(size), rand.nextInt(size));
+    }
 }
