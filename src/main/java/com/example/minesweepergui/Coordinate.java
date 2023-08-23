@@ -12,12 +12,8 @@ public class Coordinate {
     }
 
     static Coordinate getRandomCoordinate(int size) {
-        Random randX = new Random();
-        Random randY = new Random();
+        Random rand = new Random();
 
-        int x = randX.nextInt(size);
-        int y = randY.nextInt(size);
-
-        return new Coordinate(x, y);
+        return new Coordinate(rand.nextInt(size), rand.nextInt(size));
     }
 }

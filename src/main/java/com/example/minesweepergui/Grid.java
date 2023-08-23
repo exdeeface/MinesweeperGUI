@@ -1,4 +1,5 @@
 package com.example.minesweepergui;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class Grid {
@@ -8,8 +9,10 @@ public class Grid {
     int size;
     int bombs;
 
-    Vector<Tile> bombLocations = new Vector<>();
-    Vector<Vector<Tile>> matrix = new Vector<>();
+    String padText = "\n    ";
+
+    ArrayList<ArrayList<Tile>> matrix = new ArrayList<>();
+    ArrayList<Tile> bombLocations = new ArrayList<>();
 
     Grid(int difficulty) {
         this.difficulty = difficulty;
@@ -51,7 +54,7 @@ public class Grid {
         }
 
         for (int i = 0; i < size; i++) {
-            matrix.add(new Vector<>());
+            matrix.add(new ArrayList<>());
             for (int j = 0; j < size; j++) {
                 matrix.get(i).add(new Tile(this, i, j));
             }
@@ -94,7 +97,7 @@ public class Grid {
 
         int sideNumbersY = 1;
 
-        System.out.print("\n    ");
+        System.out.print(padText);
         for (int i = 0; i < this.size; i++) {
             if (sideNumbersY < 10) {
                 System.out.print(" ");
@@ -103,13 +106,13 @@ public class Grid {
             sideNumbersY++;
         }
 
-        System.out.print("\n    ");
+        System.out.print(padText);
         for (int i = 0; i < this.size; i++) { System.out.print("__ "); }
         System.out.println();
 
         int sideNumbersX = 1;
 
-        for (Vector<Tile> col : matrix) {
+        for (ArrayList<Tile> col : matrix) {
             if (sideNumbersX < 10) { System.out.print(" "); }
             System.out.print(sideNumbersX + " | ");
             sideNumbersX++;
@@ -138,20 +141,20 @@ public class Grid {
 
         int sideNumbersY = 1;
 
-        System.out.print("\n    ");
+        System.out.print(padText);
         for (int i = 0; i < this.size; i++) {
             if (sideNumbersY < 10) { System.out.print(" "); }
             System.out.print(sideNumbersY + " ");
             sideNumbersY++;
         }
 
-        System.out.print("\n    ");
+        System.out.print(padText);
         for (int i = 0; i < this.size; i++) { System.out.print("__ "); }
         System.out.println();
 
         int sideNumbersX = 1;
 
-        for (Vector<Tile> col : matrix) {
+        for (ArrayList<Tile> col : matrix) {
             if (sideNumbersX < 10) { System.out.print(" "); }
             System.out.print(sideNumbersX + " | ");
             sideNumbersX++;

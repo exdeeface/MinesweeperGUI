@@ -95,4 +95,8 @@ public class GameInstance {
             }
         }
     }
+
+    static void logToConsole(String s) {
+        System.out.println(s);
+    }
 }
