@@ -51,9 +51,7 @@ public class Grid {
 
         for (int i = 0; i < size; i++) {
             matrix.add(new ArrayList<>());
-            for (int j = 0; j < size; j++) {
-                matrix.get(i).add(new Tile(this, i, j));
-            }
+            for (int j = 0; j < size; j++) { matrix.get(i).add(new Tile(this, i, j)); }
         }
 
         gridCreated = true;
@@ -68,16 +66,7 @@ public class Grid {
     }
 
     boolean checkGridState() {
-        for (Tile tile : bombLocations) {
-            if (!tile.hasFlag()) {
-                System.out.println("Still bombs out there!");
-                return false;
-            } else {
-                System.out.println("All bombs found!");
-                return true;
-            }
-        }
-
+        for (Tile tile : bombLocations) { return tile.hasFlag(); }
         return true;
     }
 
@@ -86,55 +75,7 @@ public class Grid {
     }
 
     void printGrid() {
-        if (!gridCreated) {
-            System.out.println("Need to create grid before printing.");
-            return;
-        }
-
-        int sideNumbersY = 1;
-
-        System.out.print(padText);
-        for (int i = 0; i < this.size; i++) {
-            if (sideNumbersY < 10) {
-                System.out.print(" ");
-            }
-            System.out.print(sideNumbersY + " ");
-            sideNumbersY++;
-        }
-
-        System.out.print(padText);
-        for (int i = 0; i < this.size; i++) { System.out.print("__ "); }
-        System.out.println();
-
         int sideNumbersX = 1;
-
-        for (ArrayList<Tile> col : matrix) {
-            if (sideNumbersX < 10) { System.out.print(" "); }
-            System.out.print(sideNumbersX + " | ");
-            sideNumbersX++;
-
-            for (Tile tile : col) {
-                if (tile.isRevealed()) {
-                    if (tile.hasFlag()) {
-                        System.out.print("F  ");
-                    } else {
-                        System.out.print(tile.getNeighbouringBombs() + "  ");
-                    }
-                } else {
-                    System.out.print("?  ");
-                }
-            }
-
-            System.out.println();
-        }
-    }
-
-    void printGridAsIs() {
-        if (!gridCreated) {
-            System.out.println("Need to create grid before printing.");
-            return;
-        }
-
         int sideNumbersY = 1;
 
         System.out.print(padText);
@@ -148,17 +89,18 @@ public class Grid {
         for (int i = 0; i < this.size; i++) { System.out.print("__ "); }
         System.out.println();
 
-        int sideNumbersX = 1;
-
         for (ArrayList<Tile> col : matrix) {
             if (sideNumbersX < 10) { System.out.print(" "); }
             System.out.print(sideNumbersX + " | ");
             sideNumbersX++;
 
             for (Tile tile : col) {
-                if (tile.hasBomb()) { System.out.print("B  "); }
-                else { System.out.print(tile.getNeighbouringBombs() + "  "); }
+                if (tile.isRevealed()) {
+                    if (tile.hasFlag()) { System.out.print("F  "); }
+                    else { System.out.print(tile.getNeighbouringBombs() + "  "); }
+                } else { System.out.print("?  "); }
             }
+
             System.out.println();
         }
     }
