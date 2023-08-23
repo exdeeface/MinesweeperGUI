@@ -66,7 +66,11 @@ public class Grid {
     }
 
     boolean checkGridState() {
-        for (Tile tile : bombLocations) { return tile.hasFlag(); }
+        for (Tile tile : bombLocations) {
+            if (!tile.hasFlag()) {
+                return false;
+            }
+        }
         return true;
     }
 
